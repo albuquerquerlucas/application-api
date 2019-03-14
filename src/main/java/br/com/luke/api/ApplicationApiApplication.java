@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 
 import br.com.luke.api.entities.Empresa;
 import br.com.luke.api.repositories.EmpresaRepository;
+import br.com.luke.api.services.ExemploService;
 import br.com.luke.api.utils.SenhaUtils;
 
 @SpringBootApplication
@@ -24,6 +25,9 @@ public class ApplicationApiApplication {
 	@Autowired
 	private EmpresaRepository empresaRepository;
 	
+	@Autowired
+	private ExemploService exemploService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationApiApplication.class, args);
 	}
@@ -34,7 +38,8 @@ public class ApplicationApiApplication {
 			//System.out.println("### Quantidade de elementos por página = " + this.qtdPorPagina);
 			
 			//testeEncodedSenha();
-			testeEmpresaRepository();
+			//testeEmpresaRepository();
+			testeServicos();
 		};
 	}
 	
@@ -81,5 +86,12 @@ public class ApplicationApiApplication {
 		this.empresaRepository.deleteById(1L);
 		empresas = empresaRepository.findAll();
 		System.out.println("Empresas: " + empresas.size());
+	}
+	
+	/**
+	 * Testa a implementação de serviços 
+	 * */
+	public void testeServicos() {
+		this.exemploService.testarServico();
 	}
 }
