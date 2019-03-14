@@ -1,10 +1,11 @@
 package br.com.luke.api.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.luke.api.entities.Empresa;
 
-public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
+@Repository("EmpresaRepository")
+public interface EmpresaRepository extends BaseRepository<Empresa> {
 	
-	Empresa findByCnpj(String cnpj);
+	public Empresa findByCnpj(String cnpj);
 }
