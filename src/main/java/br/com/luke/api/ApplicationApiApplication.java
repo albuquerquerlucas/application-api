@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import br.com.luke.api.entities.Empresa;
 import br.com.luke.api.repositories.EmpresaRepository;
@@ -17,38 +18,39 @@ import br.com.luke.api.services.ExemploService;
 import br.com.luke.api.utils.SenhaUtils;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "br.com.luke.api.controller")
 public class ApplicationApiApplication {
 		
-	@Value("${paginacao.qtd_por_pagina}")
-	private int qtdPorPagina;
+	/*@Value("${paginacao.qtd_por_pagina}")
+	private int qtdPorPagina;*/
 	
-	@Autowired
-	private EmpresaRepository empresaRepository;
+	/*@Autowired
+	private EmpresaRepository empresaRepository;*/
 	
-	@Autowired
-	private ExemploService exemploService;
+	/*@Autowired
+	private ExemploService exemploService;*/
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationApiApplication.class, args);
 	}
 	
-	@Bean
+	/*@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args ->{
-			//System.out.println("### Quantidade de elementos por página = " + this.qtdPorPagina);
+			System.out.println("### Quantidade de elementos por página = " + this.qtdPorPagina);
 			
 			//testeEncodedSenha();
 			//testeEmpresaRepository();
-			testeServicos();
+			//testeServicos();
 		};
-	}
+	}*/
 	
 	/**
 	 * Teste de encryptação de senha com o BCrypt
 	 * do próprio Spring Security
 	 * 
 	 * */
-	public void testeEncodedSenha() {
+	/*public void testeEncodedSenha() {
 		String senhaEncoded = SenhaUtils.gerarBCrypt("123456");
 		System.out.println("Senha encoded: " + senhaEncoded);
 		
@@ -56,12 +58,12 @@ public class ApplicationApiApplication {
 		System.out.println("Senha encoded novamente: " + senhaEncoded);
 		
 		System.out.println("Senha Válida: " + SenhaUtils.senhaValida("123456", senhaEncoded));
-	}
+	}*/
 	
 	/**
 	 * Testa as funcionalidades do Banco H2 
 	 * */
-	public void testeEmpresaRepository() {
+	/*public void testeEmpresaRepository() {
 		Empresa empresa = new Empresa();
 		empresa.setRazaoSocial("Rafael e Rosângela Ferragens ME");
 		empresa.setCnpj("78.597.204/0001-49");
@@ -86,12 +88,12 @@ public class ApplicationApiApplication {
 		this.empresaRepository.deleteById(1L);
 		empresas = empresaRepository.findAll();
 		System.out.println("Empresas: " + empresas.size());
-	}
+	}*/
 	
 	/**
 	 * Testa a implementação de serviços 
 	 * */
-	public void testeServicos() {
+	/*public void testeServicos() {
 		this.exemploService.testarServico();
-	}
+	}*/
 }
