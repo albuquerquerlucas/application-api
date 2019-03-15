@@ -1,24 +1,11 @@
 package br.com.luke.api;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-import br.com.luke.api.entities.Empresa;
-import br.com.luke.api.repositories.EmpresaRepository;
-import br.com.luke.api.services.ExemploService;
-import br.com.luke.api.utils.SenhaUtils;
-
-@SpringBootApplication
-@ComponentScan(basePackages = "br.com.luke.api.controller")
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+//@ComponentScan(basePackages = "br.com.luke.api.controller")
 public class ApplicationApiApplication {
 		
 	/*@Value("${paginacao.qtd_por_pagina}")
