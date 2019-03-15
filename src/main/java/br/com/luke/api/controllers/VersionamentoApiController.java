@@ -44,7 +44,7 @@ public class VersionamentoApiController {
 	}
 	
 	/**
-	 * Versionamento de API pelo HEADER 'X-API-Version', define versão 'v1'.
+	 * Versionamento de API pelo HEADER 'X-API-Version', define versão 'v2'.
 	 * 
 	 * @param nome
 	 * @return ResponseEntity<Response<String>>
