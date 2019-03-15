@@ -1,5 +1,10 @@
 package br.com.luke.api.dto;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CNPJ;
+
 public class EmpresaDTO {
 	
 	private Long id;
@@ -17,7 +22,9 @@ public class EmpresaDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@NotEmpty(message = "Razão Social não pode ser vazia.")
+	@Length(min = 5, max = 200, message = "Razão Social deve conter entre 5 e 200 caracteres.")
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
@@ -25,7 +32,9 @@ public class EmpresaDTO {
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
-
+	
+	@NotEmpty(message = "CNPJ não pode ser vazio.")
+	@CNPJ(message = "CNPJ Inválido.")
 	public String getCnpj() {
 		return cnpj;
 	}

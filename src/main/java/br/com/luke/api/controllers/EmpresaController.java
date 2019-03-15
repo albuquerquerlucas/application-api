@@ -1,6 +1,9 @@
 package br.com.luke.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +25,26 @@ public class EmpresaController {
 	/**
 	 * Implementação com o EmpresaDTO encapsulado em um response genérico...
 	 * */
-	@PostMapping
+	/*@PostMapping
 	public ResponseEntity<Response<EmpresaDTO>> cadastrar(@RequestBody EmpresaDTO empresaDTO){
 		Response<EmpresaDTO> response = new Response<>();
+		
+		empresaDTO.setId(1L);
+		response.setDados(empresaDTO);
+		return ResponseEntity.ok(response);
+	}*/
+	
+	/**
+	 * Implementação com o EmpresaDTO com bean validate...
+	 * */
+	@PostMapping
+	public ResponseEntity<Response<EmpresaDTO>> cadastrar(@Valid @RequestBody EmpresaDTO empresaDTO, BindingResult result){
+		Response<EmpresaDTO> response = new Response<>();
+		
+		if(result.hasErrors()) {
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
 		
 		empresaDTO.setId(1L);
 		response.setDados(empresaDTO);
